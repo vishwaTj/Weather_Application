@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
-
+import WeatherCard from './WeatherCard';
 import "./index.css";
 
 const App = () => {
-    var arr = ["Cairo","Jaipur","Kolkata"];
   
+    const [filter,setfilter] = useState(false);
     const [city,setCity] = useState('');
+
+    const [weatherF,setweatherf] = useState({
+        name:"",
+        list:[]
+    });
 
     const handleChange = (e)=>{
         setCity(e.target.value);
     }
 
     const fetchweather = async(city)=>{
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.3&lon=10.99&appid=1497d43435982615f1f9dccba511e522`);
+        const result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1497d43435982615f1f9dccba511e522`);
         const output = await result.json();
         console.log(output);
-    }
-     
-    const handleSubmit=(e)=>{
-       e.preventDefault(); 
-        if(arr.includes(city)){
-          console.log("Hello");
-          fetchweather(city);
-        }
-        else{
-            console.log("Array not found " + city);
+        if(output.message === 0){
+            setfilter(true);
+            setweatherf({
+                name:output.city.name,
+                list:output.list
+            });
         }
     }
 
-    console.log(city)
+    const handleSubmit=(e)=>{
+       e.preventDefault(); 
+        console.log("Hello");
+        fetchweather(city);
+    }
+
 
   return (
     <div className='Body'>
@@ -43,6 +49,9 @@ const App = () => {
                 <i className="fas fa-search"></i>
             </div>
         </div>
+      </div>
+      <div>
+        {filter && <WeatherCard weatherArray={weatherF} />}
       </div>
     </div>
   )

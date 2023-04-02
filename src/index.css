@@ -18,3 +18,20 @@
 .search-icon{
     margin-left: 10px;
 }
+
+.box-wrap{
+    display: flex;
+    flex-direction: row;    
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.day-card{
+    position: relative;
+    border: 1px solid lightgray;
+    padding:10px;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0px 3px 4px lightgray;
+    cursor: pointer;
+}
