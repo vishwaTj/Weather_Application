@@ -11,10 +11,18 @@ const App = () => {
         setCity(e.target.value);
     }
 
+    const fetchweather = async(city)=>{
+        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.3&lon=10.99&appid=1497d43435982615f1f9dccba511e522`);
+        const output = await result.json();
+        console.log(output);
+    }
+     
     const handleSubmit=(e)=>{
        e.preventDefault(); 
         if(arr.includes(city)){
-          console.log("Hello");}
+          console.log("Hello");
+          fetchweather(city);
+        }
         else{
             console.log("Array not found " + city);
         }
