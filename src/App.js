@@ -19,7 +19,6 @@ const App = () => {
     const fetchweather = async(city)=>{
         const result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1497d43435982615f1f9dccba511e522`);
         const output = await result.json();
-        console.log(output);
         if(output.message === 0){
             setfilter(true);
             setweatherf({
@@ -30,8 +29,7 @@ const App = () => {
     }
 
     const handleSubmit=(e)=>{
-       e.preventDefault(); 
-        console.log("Hello");
+        e.preventDefault(); 
         fetchweather(city);
     }
 

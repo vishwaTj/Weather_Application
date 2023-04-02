@@ -2,8 +2,6 @@ import React from 'react';
 import Card from './Card';
 
 const WeatherCard = ({weatherArray}) => {
-    console.log("WeatherCard mein hun mai")
-    console.log(weatherArray);
   return (
     <div style={{"textAlign":"center","marginTop":"25px"}}>
         <h1>{weatherArray.name}</h1>
