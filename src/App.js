@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+// import * as mdb from 'mdb-ui-kit';
+import { Input } from 'mdb-ui-kit';
+import "./index.css";
 
-function App() {
+const App = () => {
+    let arr = ["Cairo","Jaipur","Kolkata"];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='Body'>
+      <div className='Input'>
+        <h1>Weather App</h1>
+        <div className="input-group rounded input-block">
+            <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span className="input-group-text border-0" id="search-addon">
+                <i className="fas fa-search"></i>
+            </span>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
