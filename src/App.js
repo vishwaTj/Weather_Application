@@ -18,6 +18,7 @@ const App = () => {
 //state vvariables to store the latitude and longitude of the coordinates    
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
+    const [curr,setCurr] = useState(false);
 
 //state variable to set the weather with required weather info to be displayed in cards    
     const [weatherF,setweatherf] = useState({
@@ -40,6 +41,12 @@ const App = () => {
 // used for finding out the Geolocation of current place ////////////    
     useEffect(() => {
         const fetchData = async () => {
+            let temperature_unit = "metric";
+        if(unit === "Celsius"){
+            temperature_unit = "metric";
+        }else{
+            temperature_unit = "imperial";
+        }
           navigator.geolocation.getCurrentPosition(function(position) {
             setLat(position.coords.latitude);
             setLong(position.coords.longitude);
@@ -47,7 +54,7 @@ const App = () => {
             console.log(long);
           });
     
-          const result=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=1497d43435982615f1f9dccba511e522`)
+          const result=await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=1497d43435982615f1f9dccba511e522&units=${temperature_unit}`)
           const output = await result.json();
             console.log(output);
             setweatherf({
@@ -56,7 +63,7 @@ const App = () => {
             });
         }
         fetchData();
-      }, [lat,long,unit])
+      }, [lat,long,curr])
 
 
 // function to change the unit of temperature and re render the web page //////////////////
@@ -69,6 +76,10 @@ const App = () => {
         fetchweather(city);
     }
 
+// function to set the temperature of the current location
+   const setGeoLocation = ()=>{
+     setCurr(!curr);
+   } 
 
 // function to fetch the weather from the weather API /////////////////    
     const fetchweather = async(city)=>{
@@ -108,7 +119,7 @@ const App = () => {
         <h1>Weather App</h1>
         <div>
             <button className='Temp-change' onClick={unitChange}>{unit}</button>
-            <button className='Location' onClick={unitChange}>Current Location</button>
+            <button className='Location' onClick={setGeoLocation}>Current Location</button>
         </div>
         <div className="input-block">
           <form onSubmit={handleSubmit}>  

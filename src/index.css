@@ -71,6 +71,8 @@ body{
     justify-content: center;
 }
 
+
+/* ********************** card styling ****************** */
 .day-card{
     position: relative;
     border: 1px solid lightgray;
