@@ -13,7 +13,7 @@ const App = () => {
     const [city,setCity] = useState('');
 
 //state variable to store the unit celsius or farenheit    
-    const [unit,setUnit] = useState("Celsius");
+    const [unit,setUnit] = useState("Farenheit");
 
 //state vvariables to store the latitude and longitude of the coordinates    
     const [lat, setLat] = useState([]);
@@ -23,7 +23,8 @@ const App = () => {
 //state variable to set the weather with required weather info to be displayed in cards    
     const [weatherF,setweatherf] = useState({
         name:"",
-        list:[]
+        list:[],
+        unit:""
     });
 
 
@@ -59,11 +60,12 @@ const App = () => {
             console.log(output);
             setweatherf({
                 name:output.city.name,
-                list:output.list
+                list:output.list,
+                unit
             });
         }
         fetchData();
-      }, [lat,long,curr])
+      }, [lat,long,curr,unit])
 
 
 // function to change the unit of temperature and re render the web page //////////////////
@@ -74,6 +76,7 @@ const App = () => {
             setUnit("Celsius");
         }  
         fetchweather(city);
+        return;
     }
 
 // function to set the temperature of the current location
@@ -97,7 +100,8 @@ const App = () => {
             setfilter(true);
             setweatherf({
                 name:output.city.name,
-                list:output.list
+                list:output.list,
+                unit
             });
         }
     }
