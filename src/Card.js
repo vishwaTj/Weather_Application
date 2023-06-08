@@ -20,6 +20,7 @@ const Card = ({day,unit}) => {
         sunny,
         Snow
     }
+   
 
   return (
     // The weather card part of the application //////////////////// 

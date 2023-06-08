@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './Card';
 
 const WeatherCard = ({weatherArray,unit}) => {
+  console.log(weatherArray.unit);
   return (
     <div style={{"textAlign":"center","marginTop":"25px"}}>
         <h1>{weatherArray.name}</h1>
